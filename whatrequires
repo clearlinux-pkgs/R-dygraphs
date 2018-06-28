@@ -1,9 +1,14 @@
 # This file contains recursive sources that require this package
+R-bipartite
 R-brms
 R-broom
 R-caret
+R-compositions
+R-manipulateWidget
 R-modelr
 R-recipes
+R-rgl
 R-rstanarm
 R-shinystan
+R-sna
 R-tidyverse
