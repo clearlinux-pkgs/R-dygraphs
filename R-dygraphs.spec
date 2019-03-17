@@ -4,21 +4,21 @@
 #
 Name     : R-dygraphs
 Version  : 1.1.1.6
-Release  : 17
+Release  : 18
 URL      : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Summary  : Interface to 'Dygraphs' Interactive Time Series Charting Library
 Group    : Development/Tools
 License  : GPL-3.0 MIT
+Requires: R-htmltools
 Requires: R-htmlwidgets
-Requires: R-rmarkdown
 Requires: R-xts
 Requires: R-zoo
+BuildRequires : R-htmltools
 BuildRequires : R-htmlwidgets
-BuildRequires : R-rmarkdown
 BuildRequires : R-xts
 BuildRequires : R-zoo
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
 (a copy of which is included in the package). Provides rich facilities
@@ -34,11 +34,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531363012
+export SOURCE_DATE_EPOCH=1552851659
 
 %install
+export SOURCE_DATE_EPOCH=1552851659
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1531363012
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -56,9 +56,9 @@ echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library dygraphs
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
-echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " > ~/.R/Makevars
-echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " >> ~/.R/Makevars
-echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512  " >> ~/.R/Makevars
+echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --preclean --install-tests --no-test-load --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library dygraphs
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
@@ -73,8 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library dygraphs|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  dygraphs || :
 
 
 %files
@@ -139,3 +138,15 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/dygraphs/plugins/rebase.js
 /usr/lib64/R/library/dygraphs/plugins/ribbon.js
 /usr/lib64/R/library/dygraphs/plugins/unzoom.js
+/usr/lib64/R/library/dygraphs/tests/testthat.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-axis.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-callbacks.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-dygraph.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-event.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-highlight.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-legend.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-plotter.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-range-selector.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-roller.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-series.R
+/usr/lib64/R/library/dygraphs/tests/testthat/test-shading.R
