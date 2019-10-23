@@ -4,7 +4,7 @@
 #
 Name     : R-dygraphs
 Version  : 1.1.1.6
-Release  : 26
+Release  : 27
 URL      : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Summary  : Interface to 'Dygraphs' Interactive Time Series Charting Library
@@ -13,14 +13,17 @@ License  : GPL-3.0 MIT
 Requires: R-htmltools
 Requires: R-htmlwidgets
 Requires: R-magrittr
+Requires: R-rmarkdown
 Requires: R-xts
 Requires: R-zoo
 BuildRequires : R-htmltools
 BuildRequires : R-htmlwidgets
 BuildRequires : R-magrittr
+BuildRequires : R-rmarkdown
 BuildRequires : R-xts
 BuildRequires : R-zoo
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 (a copy of which is included in the package). Provides rich facilities
@@ -36,10 +39,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569287551
+export SOURCE_DATE_EPOCH=1571821257
 
 %install
-export SOURCE_DATE_EPOCH=1569287551
+export SOURCE_DATE_EPOCH=1571821257
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
