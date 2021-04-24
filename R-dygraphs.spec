@@ -4,7 +4,7 @@
 #
 Name     : R-dygraphs
 Version  : 1.1.1.6
-Release  : 33
+Release  : 34
 URL      : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz
 Summary  : Interface to 'Dygraphs' Interactive Time Series Charting Library
